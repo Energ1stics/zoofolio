@@ -14,11 +14,16 @@ datasource db {
     relationMode = "prisma"
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
+model Livestock {
+    id String @id @default(cuid())
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    @@index([name])
+    name String? @db.VarChar(255)
+    animalName String? @db.VarChar(255)
+    breed String? @db.VarChar(255)
+    birthdate DateTime?
+
+    @@index([animalName])
+    @@index([breed])
 }
