@@ -24,24 +24,26 @@ export default async function Home() {
         <div>
           <table className="w-full text-left rtl:text-right">
             <thead className="bg-slate-600 uppercase">
-              <th scope="col" className="px-6 py-3">
-                Identifier
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Name
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Animal
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Breed
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Date of acquisition
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Date of birth
-              </th>
+              <tr>
+                <th scope="col" className="px-6 py-3">
+                  Identifier
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Animal
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Breed
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Date of acquisition
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Date of birth
+                </th>
+              </tr>
             </thead>
             <tbody className="">
               {animals.map((animal) => {
