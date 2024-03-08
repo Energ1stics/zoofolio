@@ -7,7 +7,9 @@ export default async function Home() {
 
   const { userId } = auth();
 
-  const animals = await api.animal.getAll.query();
+  const animals = userId
+    ? await api.animal.getAll.query({ ownerId: userId })
+    : [];
 
   return (
     <main className="flex h-screen justify-center">

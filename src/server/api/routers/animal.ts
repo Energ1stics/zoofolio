@@ -12,11 +12,12 @@ export const animalRouter = createTRPCRouter({
     }),
 
   create: publicProcedure
-    .input(z.object({ name: z.string().min(1) }))
+    .input(z.object({ ownerId: z.string().min(1), species: z.string().min(1) }))
     .mutation(async ({ ctx, input }) => {
       return ctx.db.animal.create({
         data: {
-          name: input.name,
+          ownerId: input.ownerId,
+          species: input.species,
         },
       });
     }),
@@ -27,7 +28,13 @@ export const animalRouter = createTRPCRouter({
     });
   }),
 
-  getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.db.animal.findMany({ orderBy: { name: "asc" } });
-  }),
+  getAll: publicProcedure
+    .input(z.object({ ownerId: z.string().min(1) }))
+    .query(({ ctx, input }) => {
+      return ctx.db.animal.findMany({
+        take: 100,
+        where: { ownerId: input.ownerId },
+        orderBy: { name: "asc" },
+      });
+    }),
 });
