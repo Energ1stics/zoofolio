@@ -7,7 +7,7 @@ export default async function Home() {
 
   const { userId } = auth();
 
-  const animals = await api.post.getAll.query();
+  const animals = await api.animal.getAll.query();
 
   return (
     <main className="flex h-screen justify-center">
@@ -32,10 +32,7 @@ export default async function Home() {
                   Name
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Animal
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Breed
+                  Species
                 </th>
                 <th scope="col" className="px-6 py-3">
                   Date of acquisition
@@ -56,11 +53,12 @@ export default async function Home() {
                       {animal.id}
                     </td>
                     <td className="px-6 py-4">{animal.name}</td>
-                    <td className="px-6 py-4">{animal.animalName}</td>
-                    <td className="px-6 py-4">{animal.breed}</td>
-                    <td className="px-6 py-4"></td>
+                    <td className="px-6 py-4">{animal.species}</td>
                     <td className="px-6 py-4">
-                      {animal.birthdate?.toDateString()}
+                      {animal.dateOfAcquisition?.toDateString()}
+                    </td>
+                    <td className="px-6 py-4">
+                      {animal.dateOfBirth?.toDateString()}
                     </td>
                   </tr>
                 );

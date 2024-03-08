@@ -14,16 +14,16 @@ datasource db {
     relationMode = "prisma"
 }
 
-model Livestock {
+model Animal {
     id String @id @default(cuid())
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
+    ownerId String? @db.VarChar(255)
     name String? @db.VarChar(255)
-    animalName String? @db.VarChar(255)
-    breed String? @db.VarChar(255)
-    birthdate DateTime?
+    species String? @db.VarChar(255)
+    dateOfBirth DateTime?
+    dateOfAcquisition DateTime?
 
-    @@index([animalName])
-    @@index([breed])
+    @@index([species])
 }

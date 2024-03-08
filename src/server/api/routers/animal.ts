@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
-export const postRouter = createTRPCRouter({
+export const animalRouter = createTRPCRouter({
   hello: publicProcedure
     .input(z.object({ text: z.string() }))
     .query(({ input }) => {
@@ -14,7 +14,7 @@ export const postRouter = createTRPCRouter({
   create: publicProcedure
     .input(z.object({ name: z.string().min(1) }))
     .mutation(async ({ ctx, input }) => {
-      return ctx.db.livestock.create({
+      return ctx.db.animal.create({
         data: {
           name: input.name,
         },
@@ -22,12 +22,12 @@ export const postRouter = createTRPCRouter({
     }),
 
   getLatest: publicProcedure.query(({ ctx }) => {
-    return ctx.db.livestock.findFirst({
+    return ctx.db.animal.findFirst({
       orderBy: { createdAt: "desc" },
     });
   }),
 
   getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.db.livestock.findMany({ orderBy: { name: "asc" } });
+    return ctx.db.animal.findMany({ orderBy: { name: "asc" } });
   }),
 });
