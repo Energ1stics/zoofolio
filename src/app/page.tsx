@@ -1,26 +1,20 @@
-import { SignInButton, UserButton, auth } from "@clerk/nextjs";
+import { SignInButton, UserButton, currentUser } from "@clerk/nextjs";
 import { unstable_noStore as noStore } from "next/cache";
 import { api } from "~/trpc/server";
 
 export default async function Home() {
   noStore();
 
-  const { userId } = auth();
+  const user = await currentUser();
 
   return (
     <main className="flex h-screen justify-center">
       <div className="h-full w-full lg:max-w-5xl">
-        <div className="p-5">
-          {userId ? (
-            <div>
-              <UserButton afterSignOutUrl="/" />
-            </div>
-          ) : (
-            <SignInButton />
-          )}
+        <div className="flex min-h-[72px] p-5">
+          {user?.id ? <UserButton afterSignOutUrl="/" /> : <SignInButton />}
         </div>
         <div>
-          {userId && <AnimalsTable userId={userId} />}
+          {user?.id && <AnimalsTable userId={user.id} />}
           <button className="w-full bg-slate-500 px-6 py-4 uppercase">
             Click me
           </button>
