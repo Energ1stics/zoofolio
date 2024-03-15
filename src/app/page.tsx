@@ -8,8 +8,6 @@ export default async function Home() {
 
   const user = await currentUser();
 
-  // const animals = api.animal.getAll.query({ownerId: user.id})
-
   return (
     <main className="flex h-screen justify-center">
       <div className="h-full w-full lg:max-w-5xl">
