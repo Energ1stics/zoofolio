@@ -67,7 +67,9 @@ const AnimalsTable = (props: { animals: Animal[] }) => {
       <tbody>
         {animals.map((animal) => (
           <tr key={animal.id} className="group">
-            <td className="border-b border-slate-500 bg-slate-700 p-0 group-last:rounded-bl-lg group-last:border-0">
+            <td
+              className={`border-b-2 border-slate-600 p-0 transition-all group-last:rounded-bl-lg group-last:border-0 ${animal.isSelected ? "bg-slate-800" : "bg-slate-700"}`}
+            >
               <div className="flex h-full w-full items-center justify-center">
                 <input
                   className="size-5"
@@ -77,19 +79,29 @@ const AnimalsTable = (props: { animals: Animal[] }) => {
                 />
               </div>
             </td>
-            <td className="border-b border-slate-500 bg-slate-700 px-6 py-4 group-last:border-0">
+            <td
+              className={`border-b-2 border-slate-600 px-6 py-4 transition-all group-last:border-0 ${animal.isSelected ? "bg-slate-800" : "bg-slate-700"}`}
+            >
               {animal.id}
             </td>
-            <td className="border-b border-slate-500 bg-slate-700 px-6 py-4 group-last:border-0">
+            <td
+              className={`border-b-2 border-slate-600 px-6 py-4 transition-all group-last:border-0 ${animal.isSelected ? "bg-slate-800" : "bg-slate-700"}`}
+            >
               {animal.name}
             </td>
-            <td className="border-b border-slate-500 bg-slate-700 px-6 py-4 group-last:border-0">
+            <td
+              className={`border-b-2 border-slate-600 px-6 py-4 transition-all group-last:border-0 ${animal.isSelected ? "bg-slate-800" : "bg-slate-700"}`}
+            >
               {animal.species}
             </td>
-            <td className="border-b border-slate-500 bg-slate-700 px-6 py-4 group-last:border-0">
+            <td
+              className={`border-b-2 border-slate-600 px-6 py-4 transition-all group-last:border-0 ${animal.isSelected ? "bg-slate-800" : "bg-slate-700"}`}
+            >
               {animal.dateOfAcquisition?.toDateString()}
             </td>
-            <td className="border-b border-slate-500 bg-slate-700 px-6 py-4 group-last:rounded-br-lg group-last:border-0">
+            <td
+              className={`border-b-2 border-slate-600 px-6 py-4 transition-all group-last:rounded-br-lg group-last:border-0 ${animal.isSelected ? "bg-slate-800" : "bg-slate-700"}`}
+            >
               {animal.dateOfBirth?.toDateString()}
             </td>
           </tr>
