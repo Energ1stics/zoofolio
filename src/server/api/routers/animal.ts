@@ -37,4 +37,12 @@ export const animalRouter = createTRPCRouter({
         orderBy: { name: "asc" },
       });
     }),
+
+  deleteMany: publicProcedure
+    .input(z.object({ animalIds: z.string().min(1).array() }))
+    .mutation(async ({ ctx, input }) => {
+      await ctx.db.animal.deleteMany({
+        where: { id: { in: input.animalIds } },
+      });
+    }),
 });

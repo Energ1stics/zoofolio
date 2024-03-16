@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { api } from "~/trpc/react";
 import { type RouterOutputs } from "~/trpc/shared";
 
 type Animal = RouterOutputs["animal"]["getAll"][number] & {
@@ -9,6 +10,8 @@ type Animal = RouterOutputs["animal"]["getAll"][number] & {
 
 const AnimalsTable = (props: { animals: Animal[] }) => {
   const [animals, setAnimals] = useState(props.animals);
+
+  const { mutate: deleteManyAnimals } = api.animal.deleteMany.useMutation();
 
   if (animals.length === 0)
     return (
@@ -34,6 +37,9 @@ const AnimalsTable = (props: { animals: Animal[] }) => {
   };
 
   const deleteSelectedRows = () => {
+    deleteManyAnimals({
+      animalIds: animals.filter((a) => a.isSelected).map((a) => a.id),
+    });
     setAnimals(animals.filter((a) => !a.isSelected));
   };
 
