@@ -45,7 +45,29 @@ const AnimalsTable = (props: { animals: Animal[] }) => {
 
   return (
     <>
-      <div className="p-5">
+      <div className="flex gap-x-4 p-5">
+        <button
+          className="rounded-3xl border-2 border-slate-600 px-3 py-2 transition-all hover:bg-slate-600"
+          type="button"
+        >
+          <div className="flex items-center gap-x-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="h-6 w-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
+            </svg>
+            <div className="text-sm font-semibold">New</div>
+          </div>
+        </button>
         <button
           className="rounded-3xl border-2 border-slate-600 px-3 py-2 transition-all hover:bg-slate-600"
           type="button"
